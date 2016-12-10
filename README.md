@@ -2,7 +2,7 @@
 
 <br><b>Apache Hive</b>
 <br>- Enable Tez
-<br>```http://openflights.org/data.html```
+<br>&ensp;&ensp;```http://openflights.org/data.html```
 <br>- Use ORC compressed storage
 <br>- Use Vectorization
 <br>- Enable CBO (Cost-Based Optimization)
