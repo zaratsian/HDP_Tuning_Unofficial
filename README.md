@@ -4,7 +4,7 @@
 <br>- Enable Tez
 <br>&ensp;&ensp;&ensp;&ensp;```http://openflights.org/data.html```
 <br>- Use ORC compressed storage
-<br>&ensp;&ensp;&ensp;&ensp;```
+<br>```
 CREATE TABLE A_ORC (
 customerID int, name string, age int, address string
 ) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
