@@ -25,8 +25,8 @@
 <br>set hive.exec.parallel=true;
 <br>set hive.exec.parallel.thread.number=16;
 <br>set hive.exec.dynamic.partition.mode=nonstrict;
-<br><label><input type="checkbox" id="" value="">set hive.exec.dynamic.partition=true;</label>
-<br><label><input type="checkbox" id="" value="">set hive.optimize.sort.dynamic.partition=true;</label>
+<br><label><input type="checkbox" id="111" value="111">set hive.exec.dynamic.partition=true;</label>
+<br><label><input type="checkbox" id="222" value="222">set hive.optimize.sort.dynamic.partition=true;</label>
 <br>
 <br>Setup ORC:
 <br>```CREATE TABLE A_ORC (ID int, name string, value float) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
