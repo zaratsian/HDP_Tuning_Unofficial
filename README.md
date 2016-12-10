@@ -4,10 +4,7 @@
 <br>- Enable Tez
 <br>&ensp;&ensp;&ensp;&ensp;```http://openflights.org/data.html```
 <br>- Use ORC compressed storage
-<br>```
-CREATE TABLE A_ORC (
-customerID int, name string, age int, address string
-) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
+<br>```CREATE TABLE A_ORC (customerID int, name string, age int, address string) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
 <br>- Use Vectorization
 <br>&ensp;&ensp;&ensp;&ensp;```set hive.vectorized.execution.enabled = true;```
 <br>&ensp;&ensp;&ensp;&ensp;```set hive.vectorized.execution.reduce.enabled = true;```
