@@ -21,12 +21,12 @@
 <br>set hive.stats.fetch.partition.stats=true;
 <br>set hive.vectorized.execution.enabled = true;
 <br>set hive.vectorized.execution.reduce.enabled = true;
-<br>set hive.vectorized.execution.reduce.groupby.enabled = true;
-<br>set hive.exec.parallel=true;
-<br>set hive.exec.parallel.thread.number=16;
-<br>set hive.exec.dynamic.partition.mode=nonstrict;
-<br>SET hive.exec.dynamic.partition=true;
-<br><input type="checkbox">set hive.optimize.sort.dynamic.partition=true;</input>
+<br><input type="checkbox" id="" value="">&nbsp;&nbsp;set hive.vectorized.execution.reduce.groupby.enabled = true;
+<br><input type="checkbox" id="" value="">&nbsp;&nbsp;set hive.exec.parallel=true;
+<br><input type="checkbox" id="" value="">&nbsp;&nbsp;set hive.exec.parallel.thread.number=16;
+<br><input type="checkbox" id="" value="">&nbsp;&nbsp;set hive.exec.dynamic.partition.mode=nonstrict;
+<br><input type="checkbox" id="" value="">&nbsp;&nbsp;SET hive.exec.dynamic.partition=true;
+<br><input type="checkbox" id="" value="">&nbsp;&nbsp;set hive.optimize.sort.dynamic.partition=true;</input>
 <br>
 <br>Setup ORC:
 <br>```CREATE TABLE A_ORC (ID int, name string, value float) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
