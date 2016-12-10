@@ -7,9 +7,9 @@
 <br>####################################################################
 <br>
 <br>&bull; Enable Tez
-<br>&bull; Use ORC compressed storage
+<br>&bull; Store as ORC and use Zlib/Snappy compression
 <br>&bull; Use Vectorization
-<br>&bull; Enable CBO (Cost-Based Optimization)
+<br>&bull; Use CBO (Cost-Based Optimizer) with Column Stats (CBO requires stats)
 <br>&bull; Write Good SQL
 <br>
 <br>set hive.support.sql11.reserved.keywords=false; 
@@ -25,7 +25,8 @@
 <br>set hive.exec.parallel=true;
 <br>set hive.exec.parallel.thread.number=16;
 <br>set hive.exec.dynamic.partition.mode=nonstrict;
-<br>set hive.optimize.sort.dynamic.partition=true;
+<br>SET hive.exec.dynamic.partition=true;
+<br><input type="checkbox">set hive.optimize.sort.dynamic.partition=true;</input>
 <br>
 <br>Setup ORC:
 <br>```CREATE TABLE A_ORC (ID int, name string, value float) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
@@ -37,6 +38,7 @@
 <br>```ANALYZE TABLE myORCtable partition (col1, col2, col3) COMPUTE STATISTICS for columns;```
 <br>
 <br><b>References:</b>
-<br><a href="https://community.hortonworks.com/content/kbentry/14309/demystify-tez-tuning-step-by-step.html">Tuning Hive on Tez 1</a>
-<br><a href="https://community.hortonworks.com/articles/22419/hive-on-tez-performance-tuning-determining-reducer.html">Tuning Hive on Tez 2</a>
+<br><a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_hive-performance-tuning/content/ch_hive_architectural_overview.html">Hortonworks - Apache Hive Tuning for High Performance</a>
+<br><a href="https://community.hortonworks.com/content/kbentry/14309/demystify-tez-tuning-step-by-step.html">Apache Hive on Tez - Tuning Best Practices (Part 1)</a>
+<br><a href="https://community.hortonworks.com/articles/22419/hive-on-tez-performance-tuning-determining-reducer.html">Apache Hive on Tez - Tuning Best Practices (Part 2)</a>
 <br><a href="http://hortonworks.com/blog/5-ways-make-hive-queries-run-faster/">5 Ways to Improve Hive Performance</a>
