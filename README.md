@@ -1,10 +1,6 @@
 <h3>Unofficial Guide for Tuning HDP Services</h3>
 
-<br>####################################################################
-<br>#
-<br>#&ensp;&ensp;<b>Apache Hive</b>
-<br>#
-<br>####################################################################
+<br><img src="images/Apache_Hive_logo.png" class="inline"/>&ensp;&ensp;<b>Apache Hive</b>
 <br>
 <br>&bull; Enable Tez
 <br>&bull; Store as ORC and use Zlib/Snappy compression
@@ -57,11 +53,7 @@
 <br>
 <br>
 <br>
-<br>####################################################################
-<br>#
-<br>#&ensp;&ensp;<b>Apache Spark</b>
-<br>#
-<br>####################################################################
+<br><img src="images/Apache_Spark_logo.jpg" class="inline"/>&ensp;&ensp;<b>Apache Spark</b>
 <br>
 <br>
 <br>
