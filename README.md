@@ -28,10 +28,14 @@
 <br>set hive.exec.dynamic.partition=true;
 <br>set hive.optimize.sort.dynamic.partition=true;
 <br>
+<br>set mapred.reduce.tasks=-1;
+<br>set hive.tez.auto.reducer.parallelism=true;
+<br>set hive.tez.min.partition.factor=0.25; 
+<br>set hive.tez.max.partition.factor=2.0;
 <br>set yarn.nodemanager.resource.memory-mb = Usually between 75% - 87.5% RAM
+<br>set yarn.scheduler.minimum-allocation-mb = Memory per processor (or less)
 <br>set yarn.scheduler.maximum-allocation-mb = yarn.nodemanager.resource.memory-mb
-<br>Set hive.tez.container.size = yarn.scheduler.minimum-allocation-mb (1 or 2 times) but NEVER more than yarn.scheduler.maximum-allocation-mb
-<br>set mapred.reduce.tasks = -1;
+<br>set hive.tez.container.size = yarn.scheduler.minimum-allocation-mb (1 or 2 times) and less than yarn.scheduler.maximum-allocation-mb
 <br>
 <br>Setup ORC:
 <br>```CREATE TABLE A_ORC (ID int, name string, value float) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
