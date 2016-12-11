@@ -2,12 +2,14 @@
 
 <br><img src="images/Apache_Hive_logo.png" class="inline"/>&ensp;&ensp;<b>Tuning Tips and Tricks</b>
 <br>
+<br><b>General Recommendations:</b>
 <br>&bull; Enable Tez
 <br>&bull; Store as ORC and use Zlib/Snappy compression
 <br>&bull; Use Vectorization
 <br>&bull; Use CBO (Cost-Based Optimizer) with Column Stats (CBO requires stats)
 <br>&bull; Check SQL syntax
 <br>
+<br><b>Configuration Suggestions:</b>
 <br>set hive.support.sql11.reserved.keywords=false; 
 <br>set hive.execution.engine=tez;
 <br>set hive.cbo.enable=true;
@@ -53,10 +55,14 @@
 <br>
 <br>
 <br>
-<br><img src="images/Apache_Spark_logo.jpg" class="inline"/>&ensp;&ensp;<b>Tuning Tips and Tricks</b>
+<br><img src="images/Apache_Spark_logo.jpg" class="inline"/>
+<br>&ensp;&ensp;<b>Tuning Tips and Tricks</b>
 <br>
-<br>
+<br><br><b>Configuration Suggestions:</b>
+<br>Normally 3 - 6 executors per node is a reasonable, depends on the CPU cores and memory size per executor
+<br>set spark.default.parallelism = 2-3 tasks per CPU core in your cluster
 <br>
 <br><b>References:</b>
-<br><a href="https://spark.apache.org/docs/latest/tuning.html">Apache Spark (latest) Tuning</a>
+<br><a href="https://spark.apache.org/docs/latest/tuning.html">Apache Spark (latest) General Tuning</a>
+<br><a href="http://spark.apache.org/docs/latest/configuration.html#Dynamically-Loading-Spark-Properties">Apache Spark (latest) Properties / Configuration Settings</a>
 <br><a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_spark-component-guide/content/ch_tuning-spark.html">Hortonworks - Apache Spark Tuning Guide</a>
