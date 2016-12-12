@@ -77,12 +77,12 @@ level to limit just one object per RDD
 <br>
 <br><b>4. Set Correct Level of Parallelism:</b> 
 <br>&ensp;&ensp;&bull; set spark.default.parallelism = 2-3 tasks per CPU core in your cluster
-<br>
-<br><b>Configuration Suggestions:</b>
 <br>&ensp;&ensp;&bull; Normally 3 - 6 executors per node is a reasonable, depends on the CPU cores and memory size per executor
 <br>&ensp;&ensp;&bull; 5 or less cores per executor (per node)  (ie. 24-core node could run 24/4cores = 6 executors)
 <br>&ensp;&ensp;&bull; set num-executors = (4 nodes * 6 executors = 24 executors - 1 = 23 total executors)
 <br>&ensp;&ensp;&bull; set executor-memory = 256GB-2GB RAM / 6 executors = 42GB - 2GB = 40GB
+<br>
+<br><b>Configuration Suggestions:</b>
 <br>
 <br><b>References:</b>
 <br><a href="https://spark.apache.org/docs/latest/tuning.html">Apache Spark (latest) General Tuning</a>
