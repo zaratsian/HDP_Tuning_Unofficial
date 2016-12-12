@@ -91,3 +91,4 @@ level to limit just one object per RDD
 <br><a href="https://databricks.com/blog/2015/05/28/tuning-java-garbage-collection-for-spark-applications.html">Tuning Java Garbage Collection</a>
 <br><a href="http://www.slideshare.net/jcmia1/apache-spark-20-tuning-guide">Apache Spark 2.0 Tuning Guide</a>
 <br><a href="http://stackoverflow.com/questions/37871194/how-to-tune-spark-executor-number-cores-and-executor-memory">How to tune Spark executor number cores and executor memory</a>
+<br><a href="http://c2fo.io/c2fo/spark/aws/emr/2016/07/06/apache-spark-config-cheatsheet/">Apache Spark Config</a>
