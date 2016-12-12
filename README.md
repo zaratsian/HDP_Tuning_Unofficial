@@ -72,8 +72,8 @@
 <br>&ensp;&ensp;&bull; GC is a problem for Spark apps which churn RDDs
 <br>&ensp;&ensp;&bull; Measure time spent in GC by logging: -verbose:gc –XX:+PrintGCDetails –XX:+PrintGCTimeStamps
 <br>&ensp;&ensp;&bull; If there’s excessive GC per task, use the MEMORY_ONLY_SER storage
-level to limit just one object per RDD
-<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;partition (one byte array) and reduce the spark.storage.memoryFraction value from 0.6 to 0.5 or less.
+level to limit just one object per RDD 
+<br>&ensp;&ensp;&ensp;&ensp;partition (one byte array) and reduce the spark.storage.memoryFraction value from 0.6 to 0.5 or less.
 <br>
 <br><b>4. Set Correct Level of Parallelism:</b> 
 <br>&ensp;&ensp;&bull; Assign 2-3 tasks per CPU core
