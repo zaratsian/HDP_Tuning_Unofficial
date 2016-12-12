@@ -55,8 +55,7 @@
 <br>
 <br>
 <br>
-<br><img src="images/Apache_Spark_logo.jpg" class="inline"/>
-<br><h3>Tuning Tips and Tricks</h3>
+<br><img src="images/Apache_Spark_logo.png" class="inline"/>&ensp;&ensp;Tuning Tips and Tricks</h3>
 <br>
 <br><b>1. Improve Caching:</b> 
 <br>&ensp;&ensp;&ensp;MEMORY_ONLY: (default/recommended) Store RDD as deserialized objects in JVM Heap
