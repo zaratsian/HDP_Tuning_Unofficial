@@ -57,13 +57,13 @@
 <br>
 <br><img src="images/Apache_Spark_logo.png" class="inline"/>Tuning Tips and Tricks</h3>
 <br>
-<br><b>1. Improve Caching:</b> 
+<br><b>1. Caching:</b> 
 <br>&ensp;&ensp;&bull; MEMORY_ONLY: (default/recommended) Store RDD as deserialized objects in JVM Heap
 <br>&ensp;&ensp;&bull; MEMORY_ONLY_SER: (2nd option) Store RDD as serialized Kryo objects. Trade CPU time for memory savings
 <br>&ensp;&ensp;&bull; MEMORY_AND_DISK: Spill to disk if can’t fit in memory
 <br>&ensp;&ensp;&bull; MEMORY_AND_DISK_SER: Spill serialized RDD to disk if it can’t fit in memory
 <br>
-<br><b>2. Improve Data Serialization Performance:</b> 
+<br><b>2. Data Serialization Performance:</b> 
 <br>&ensp;&ensp;&bull; Reduces data size, so less data transfer
 <br>&ensp;&ensp;&bull; Use Kyro over Java (Kyro is up to 10x faster)
 <br>&ensp;&ensp;&bull; conf.set(“spark.serializer”, “org.apache.spark.serializer.KryoSerializer”)
@@ -76,17 +76,14 @@ level to limit just one object per RDD
 <br>&ensp;&ensp;&ensp;&ensp;partition (one byte array) and reduce the spark.storage.memoryFraction value from 0.6 to 0.5 or less.
 <br>
 <br><b>4. Set Correct Level of Parallelism:</b> 
-<br>&ensp;&ensp;&bull; Assign 2-3 tasks per CPU core
-<br>&ensp;&ensp;&bull; set spark.default.parallelism
-<br>
-<br><b>Additional Configuration Suggestions:</b>
-<br>&ensp;&ensp;&bull; Normally 3 - 6 executors per node is a reasonable, depends on the CPU cores and memory size per executor
 <br>&ensp;&ensp;&bull; set spark.default.parallelism = 2-3 tasks per CPU core in your cluster
-<br>&ensp;&ensp;&bull; conf.set(“spark.serializer”, “org.apache.spark.serializer.KryoSerializer”)
-<br>&ensp;&ensp;&bull; Measure time spent in GC by logging: -verbose:gc –XX:+PrintGCDetails –XX:+PrintGCTimeStamps
+<br>
+<br><b>Configuration Suggestions:</b>
+<br>&ensp;&ensp;&bull; Normally 3 - 6 executors per node is a reasonable, depends on the CPU cores and memory size per executor
 <br>
 <br><b>References:</b>
 <br><a href="https://spark.apache.org/docs/latest/tuning.html">Apache Spark (latest) General Tuning</a>
 <br><a href="http://spark.apache.org/docs/latest/configuration.html#Dynamically-Loading-Spark-Properties">Apache Spark (latest) Properties / Configuration Settings</a>
 <br><a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_spark-component-guide/content/ch_tuning-spark.html">Hortonworks - Apache Spark Tuning Guide</a>
 <br><a href="https://databricks.com/blog/2015/05/28/tuning-java-garbage-collection-for-spark-applications.html">Tuning Java Garbage Collection</a>
+<br><a href="http://www.slideshare.net/jcmia1/apache-spark-20-tuning-guide">Apache Spark 2.0 Tuning Guide</a>
