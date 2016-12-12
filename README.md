@@ -3,11 +3,11 @@
 <br><img src="images/Apache_Hive_logo.png" class="inline"/>&ensp;&ensp;<b>Tuning Tips and Tricks</b>
 <br>
 <br><b>General Recommendations:</b>
-<br>&bull; Enable Tez
-<br>&bull; Store as ORC and use Zlib/Snappy compression
-<br>&bull; Use Vectorization
-<br>&bull; Use CBO (Cost-Based Optimizer) with Column Stats (CBO requires stats)
-<br>&bull; Check SQL syntax
+<br>&ensp;&ensp;&ensp;1. Enable Tez
+<br>&ensp;&ensp;&ensp;2. Store as ORC and use Zlib/Snappy compression
+<br>&ensp;&ensp;&ensp;3. Use Vectorization
+<br>&ensp;&ensp;&ensp;4. Use CBO (Cost-Based Optimizer) with Column Stats (CBO requires stats)
+<br>&ensp;&ensp;&ensp;5. Check SQL syntax
 <br>
 <br><b>Configuration Suggestions:</b>
 <br>set hive.support.sql11.reserved.keywords=false; 
@@ -55,19 +55,34 @@
 <br>
 <br>
 <br>
-<br><img src="images/Apache_Spark_logo.png" class="inline"/>&ensp;&ensp;Tuning Tips and Tricks</h3>
+<br><img src="images/Apache_Spark_logo.png" class="inline"/>Tuning Tips and Tricks</h3>
 <br>
 <br><b>1. Improve Caching:</b> 
-<br>&ensp;&ensp;&ensp;MEMORY_ONLY: (default/recommended) Store RDD as deserialized objects in JVM Heap
-<br>&ensp;&ensp;&ensp;MEMORY_ONLY_SER: (2nd option) Store RDD as serialized Java objects. Trade CPU time for memory savings
-<br>&ensp;&ensp;&ensp;MEMORY_AND_DISK: Spill to disk if can’t fit in memory
-<br>&ensp;&ensp;&ensp;MEMORY_AND_DISK_SER: Spill serialized RDD to disk if it can’t fit in memory
+<br>&ensp;&ensp;&ensp;&bull; MEMORY_ONLY: (default/recommended) Store RDD as deserialized objects in JVM Heap
+<br>&ensp;&ensp;&ensp;&bull; MEMORY_ONLY_SER: (2nd option) Store RDD as serialized Kryo objects. Trade CPU time for memory savings
+<br>&ensp;&ensp;&ensp;&bull; MEMORY_AND_DISK: Spill to disk if can’t fit in memory
+<br>&ensp;&ensp;&ensp;&bull; MEMORY_AND_DISK_SER: Spill serialized RDD to disk if it can’t fit in memory
+<br>
+<br><b>2. Improve Data Serialization Performance:</b> 
+<br>&ensp;&ensp;&ensp;&bull; Reduces data size, so less data transfer
+<br>&ensp;&ensp;&ensp;&bull; Use Kyro over Java (Kyro is up to 10x faster)
+<br>&ensp;&ensp;&ensp;&bull; conf.set(“spark.serializer”, “org.apache.spark.serializer.KryoSerializer”)
+<br>
+<br><b>3. Memory and Garbage Collection Tuning:</b>
+<br>GC is a problem for Spark apps which churn RDDs
+<br>Measure time spent in GC by logging: -verbose:gc –XX:+PrintGCDetails –XX:+PrintGCTimeStamps
+<br>If there’s excessive GC per task, use the MEMORY_ONLY_SER storage
+level to limit just one object per RDD partition (one byte array) and reduce the spark.storage.memoryFraction value from 0.6 to 0.5 or less.
+<br>
+<br><b>4. Set Correct Level of Parallelism:</b> 
+<br>Assign 2-3 tasks per CPU core
+<br>set spark.default.parallelism
 <br>
 <br><br><b>Configuration Suggestions:</b>
-<br>Normally 3 - 6 executors per node is a reasonable, depends on the CPU cores and memory size per executor
-<br>set spark.default.parallelism = 2-3 tasks per CPU core in your cluster
-<br>conf.set(“spark.serializer”, “org.apache.spark.serializer.KryoSerializer”)
-<br>Measure time spent in GC by logging: -verbose:gc –XX:+PrintGCDetails –XX:+PrintGCTimeStamps
+<br>&bull; Normally 3 - 6 executors per node is a reasonable, depends on the CPU cores and memory size per executor
+<br>&bull; set spark.default.parallelism = 2-3 tasks per CPU core in your cluster
+<br>&bull; conf.set(“spark.serializer”, “org.apache.spark.serializer.KryoSerializer”)
+<br>&bull; Measure time spent in GC by logging: -verbose:gc –XX:+PrintGCDetails –XX:+PrintGCTimeStamps
 <br>
 <br><b>References:</b>
 <br><a href="https://spark.apache.org/docs/latest/tuning.html">Apache Spark (latest) General Tuning</a>
