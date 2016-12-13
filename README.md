@@ -8,32 +8,54 @@
 <br>&ensp;&ensp;3. Use Vectorization
 <br>&ensp;&ensp;4. Use CBO (Cost-Based Optimizer) with Column Stats (CBO requires stats)
 <br>&ensp;&ensp;5. Check SQL syntax
+<br>&ensp;&ensp;6. Use Tez View (within Ambari) for troublshooting 
+<br>&ensp;&ensp;7. Look at number of reduces & mappers (how many are running in parallel, what are the runtimes)
+<br>&ensp;&ensp;8. Look at the size of each HDFS file (~1GB each) 
 <br>
 <br><b>Configuration Suggestions:</b>
-<br>set hive.support.sql11.reserved.keywords=false; 
-<br>set hive.execution.engine=tez;
+<br>
 <br>set hive.cbo.enable=true;
 <br>set hive.compute.query.using.stats=true;
+<br>set hive.exec.dynamic.partition.mode=nonstrict;
+<br>set hive.exec.dynamic.partition=true;
+<br>set hive.exec.max.created.files=1000000;
+<br>set hive.exec.max.dynamic.partitions.pernode=100000;
+<br>set hive.exec.max.dynamic.partitions=100000;
+<br>set hive.exec.parallel.thread.number=16;
+<br>set hive.exec.parallel=true;
+<br>set hive.exec.reducers.bytes.per.reducer=1000000000;   -- 1GB
+<br>set hive.exec.reducers.max=2000;
+<br>set hive.execution.engine=tez;
+<br>set hive.optimize.reducededuplication.min.reducer=1;
+<br>set hive.optimize.sort.dynamic.partition=true;
 <br>set hive.stats.autogather=true;
 <br>set hive.stats.fetch.column.stats=true;
 <br>set hive.stats.fetch.partition.stats=true;
+<br>set hive.support.sql11.reserved.keywords=false; 
+<br>set hive.tez.auto.reducer.parallelism=true;
+<br>set hive.tez.container.size = yarn.scheduler.minimum-allocation-mb (1 or 2 times) and less than yarn.scheduler.maximum-allocation-mb
+<br>set hive.tez.exec.print.summary=true;
+<br>SET hive.tez.java.opts=-XX:+PrintGCDetails -verbose:gc -XX:+PrintGCTimeStamps -XX:+UseNUMA -XX:+UseG1GC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/;
+<br>set hive.tez.max.partition.factor=2.0;
+<br>set hive.tez.min.partition.factor=0.25; 
 <br>set hive.vectorized.execution.enabled = true;
 <br>set hive.vectorized.execution.reduce.enabled = true;
 <br>set hive.vectorized.execution.reduce.groupby.enabled = true;
-<br>set hive.exec.parallel=true;
-<br>set hive.exec.parallel.thread.number=16;
-<br>set hive.exec.dynamic.partition.mode=nonstrict;
-<br>set hive.exec.dynamic.partition=true;
-<br>set hive.optimize.sort.dynamic.partition=true;
-<br>
+<br>set mapred.job.reduce.input.buffer.percent=0.0;
+<br>SET mapred.map.tasks=6;
 <br>set mapred.reduce.tasks=-1;
-<br>set hive.tez.auto.reducer.parallelism=true;
-<br>set hive.tez.min.partition.factor=0.25; 
-<br>set hive.tez.max.partition.factor=2.0;
+<br>set mapreduce.input.fileinputformat.split.minsize.per.node=240000000;
+<br>set mapreduce.input.fileinputformat.split.minsize.per.rack=240000000;
+<br>set mapreduce.input.fileinputformat.split.minsizee=240000000;
+<br>set tez.container.max.java.heap.fraction=0.8
+<br>set tez.grouping.max-size=1073741824; 
+<br>set tez.grouping.min-size=16777216; 
+<br>set tez.queue.name=hive;
+<br>set tez.runtime.empty.partitions.info-via-events.enabled=true;
+<br>set tez.runtime.report.partition.stats=true;
 <br>set yarn.nodemanager.resource.memory-mb = Usually between 75% - 87.5% RAM
-<br>set yarn.scheduler.minimum-allocation-mb = Memory per processor (or less)
 <br>set yarn.scheduler.maximum-allocation-mb = yarn.nodemanager.resource.memory-mb
-<br>set hive.tez.container.size = yarn.scheduler.minimum-allocation-mb (1 or 2 times) and less than yarn.scheduler.maximum-allocation-mb
+<br>set yarn.scheduler.minimum-allocation-mb = Memory per processor (or less)
 <br>
 <br>Setup ORC:
 <br>```CREATE TABLE A_ORC (ID int, name string, value float) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
