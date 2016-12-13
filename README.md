@@ -11,6 +11,7 @@
 <br>&ensp;&ensp;6. Use Tez View (within Ambari) for troublshooting 
 <br>&ensp;&ensp;7. Look at number of reduces & mappers (how many are running in parallel, what are the runtimes)
 <br>&ensp;&ensp;8. Look at the size of each HDFS file (~1GB each) 
+<br>&ensp;&ensp;9. vCores (80 - 90%) 
 <br>
 <br><b>Configuration Suggestions:</b>
 <br>
@@ -35,21 +36,21 @@
 <br>set hive.tez.auto.reducer.parallelism=true;
 <br>set hive.tez.container.size = yarn.scheduler.minimum-allocation-mb (1 or 2 times) and less than yarn.scheduler.maximum-allocation-mb
 <br>set hive.tez.exec.print.summary=true;
-<br>SET hive.tez.java.opts=-XX:+PrintGCDetails -verbose:gc -XX:+PrintGCTimeStamps -XX:+UseNUMA -XX:+UseG1GC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/;
+<br>--set hive.tez.java.opts=-XX:+PrintGCDetails -verbose:gc -XX:+PrintGCTimeStamps -XX:+UseNUMA -XX:+UseG1GC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/;
 <br>set hive.tez.max.partition.factor=2.0;
 <br>set hive.tez.min.partition.factor=0.25; 
 <br>set hive.vectorized.execution.enabled = true;
 <br>set hive.vectorized.execution.reduce.enabled = true;
 <br>set hive.vectorized.execution.reduce.groupby.enabled = true;
 <br>set mapred.job.reduce.input.buffer.percent=0.0;
-<br>SET mapred.map.tasks=6;
+<br>--set mapred.map.tasks=6;
 <br>set mapred.reduce.tasks=-1;
-<br>set mapreduce.input.fileinputformat.split.minsize.per.node=240000000;
-<br>set mapreduce.input.fileinputformat.split.minsize.per.rack=240000000;
-<br>set mapreduce.input.fileinputformat.split.minsizee=240000000;
+<br>set mapreduce.input.fileinputformat.split.minsize.per.node=240000000; -- 240 MB
+<br>set mapreduce.input.fileinputformat.split.minsize.per.rack=240000000; -- 240 MB
+<br>set mapreduce.input.fileinputformat.split.minsizee=240000000;         -- 240 MB
 <br>set tez.container.max.java.heap.fraction=0.8
-<br>set tez.grouping.max-size=1073741824; 
-<br>set tez.grouping.min-size=16777216; 
+<br>set tez.grouping.max-size=1073741824; -- 1GB
+<br>set tez.grouping.min-size=16777216;   -- 16 MB
 <br>set tez.queue.name=hive;
 <br>set tez.runtime.empty.partitions.info-via-events.enabled=true;
 <br>set tez.runtime.report.partition.stats=true;
