@@ -10,7 +10,7 @@
 <br>&ensp;&ensp;5. Check SQL syntax
 <br>&ensp;&ensp;6. Use Tez View (within Ambari) for troublshooting 
 <br>&ensp;&ensp;7. Look at number of reduces & mappers (how many are running in parallel, what are the runtimes)
-<br>&ensp;&ensp;8. Look at the size of each HDFS file (~1GB each) 
+<br>&ensp;&ensp;8. Check the HDFS Hive file sizes (~1GB each) 
 <br>&ensp;&ensp;9. vCores (80 - 90%) 
 <br>
 <br><b>Configuration Suggestions:</b>
