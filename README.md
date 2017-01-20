@@ -3,15 +3,24 @@
 <br><img src="images/Apache_Hive_logo.png" class="inline"/>&ensp;&ensp;<b>Tuning Tips and Tricks</b>
 <br>
 <br><b>General Recommendations:</b>
-<br>&ensp;&ensp;1. Enable Tez
-<br>&ensp;&ensp;2. Store as ORC and use Zlib/Snappy compression
-<br>&ensp;&ensp;3. Use Vectorization
-<br>&ensp;&ensp;4. Use CBO (Cost-Based Optimizer) with Column Stats (CBO requires stats)
-<br>&ensp;&ensp;5. Check SQL syntax
-<br>&ensp;&ensp;6. Use Tez View (within Ambari) for troublshooting 
-<br>&ensp;&ensp;7. Look at number of reduces & mappers (how many are running in parallel, what are the runtimes)
-<br>&ensp;&ensp;8. Check the HDFS Hive file sizes (~1GB each) 
-<br>&ensp;&ensp;9. vCores (80 - 90%) 
+<br>&ensp;&ensp;&bull; Enable Tez
+<br>&ensp;&ensp;&bull; Store as ORC and use Zlib/Snappy compression
+<br>&ensp;&ensp;&bull; Use Vectorization
+<br>&ensp;&ensp;&bull; Use CBO (Cost-Based Optimizer) with Column Stats (CBO requires stats)
+<br>&ensp;&ensp;&bull; Check SQL syntax
+<br>&ensp;&ensp;&bull; Use Tez View (within Ambari) for troublshooting 
+<br>&ensp;&ensp;&bull; Look at number of reduces & mappers (how many are running in parallel, what are the runtimes)
+<br>&ensp;&ensp;&bull; Check the HDFS Hive file sizes (~1GB each) 
+<br>&ensp;&ensp;&bull; vCores (80 - 90%)
+<br>&ensp;&ensp;&bull; Partition (evenly) on moderate cardinality variable (500, 1000 partitions? 10000?, 20000?)
+<br>&ensp;&ensp;&bull; Bucketing provides "sub-partitions" of a partition (or further sampling/decomposition of datasets
+<br>
+<br>CREATE TABLE mytable ( 
+<br>&ensp;&ensp;&ensp;&ensp;name string,
+<br>&ensp;&ensp;&ensp;&ensp;city string,
+<br>&ensp;&ensp;&ensp;&ensp;employee_id int ) 
+<br>PARTITIONED BY (year STRING, month STRING, day STRING) 
+<br>CLUSTERED BY (employee_id) INTO 256 BUCKETS;
 <br>
 <br><b>Configuration Suggestions:</b>
 <br>
