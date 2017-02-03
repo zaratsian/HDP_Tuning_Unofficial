@@ -3,9 +3,9 @@
 <br><img src="images/Apache_Hive_logo.png" class="inline"/>&ensp;&ensp;<b>Tuning Tips and Tricks</b>
 <br>
 <br><b>Hive Ports: (<a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_reference/content/hive-ports.html">Reference</a>)</b>
-<br>&ensp;&ensp;&ensp;&ensp;Hive Server: 10000
-<br>&ensp;&ensp;&ensp;&ensp;Hive Web UI: 9999
-<br>&ensp;&ensp;&ensp;&ensp;Hive Metastore: 9083
+<br>&ensp;&ensp;&bull; Hive Server: 10000
+<br>&ensp;&ensp;&bull; Hive Web UI: 9999
+<br>&ensp;&ensp;&bull; Hive Metastore: 9083
 <br>
 <br><b>General Recommendations:</b>
 <br>&ensp;&ensp;&bull; Enable Tez
@@ -83,12 +83,13 @@
 <br>
 <br><img src="images/hive_tez_tuning_1.jpg" class="inline"/>
 <br>
-<br><b>References:</b>
+<br><b>Hive References:</b>
 <br><a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_hive-performance-tuning/content/ch_hive_architectural_overview.html">Hortonworks - Apache Hive Tuning for High Performance</a>
 <br><a href="https://community.hortonworks.com/content/kbentry/14309/demystify-tez-tuning-step-by-step.html">Apache Hive on Tez - Tuning Best Practices (Part 1)</a>
 <br><a href="https://community.hortonworks.com/articles/22419/hive-on-tez-performance-tuning-determining-reducer.html">Apache Hive on Tez - Tuning Best Practices (Part 2)</a>
 <br><a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_hive-performance-tuning/content/section_create_configure_yarn_capacity_scheduler_queues.html">Capacity Scheduler Queues - Allocate cluster resources among users and groups</a>
 <br><a href="http://hortonworks.com/blog/5-ways-make-hive-queries-run-faster/">5 Ways to Improve Hive Performance</a>
+<br>
 <br>
 <br>
 <br>
@@ -121,7 +122,7 @@ level to limit just one object per RDD
 <br>
 <br><b>Configuration Suggestions:</b>
 <br>
-<br><b>References:</b>
+<br><b>Spark References:</b>
 <br><a href="https://spark.apache.org/docs/latest/tuning.html">Apache Spark (latest) General Tuning</a>
 <br><a href="http://spark.apache.org/docs/latest/configuration.html#Dynamically-Loading-Spark-Properties">Apache Spark (latest) Properties / Configuration Settings</a>
 <br><a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_spark-component-guide/content/ch_tuning-spark.html">Hortonworks - Apache Spark Tuning Guide</a>
@@ -129,3 +130,30 @@ level to limit just one object per RDD
 <br><a href="http://www.slideshare.net/jcmia1/apache-spark-20-tuning-guide">Apache Spark 2.0 Tuning Guide</a>
 <br><a href="http://stackoverflow.com/questions/37871194/how-to-tune-spark-executor-number-cores-and-executor-memory">How to tune Spark executor number cores and executor memory</a>
 <br><a href="http://c2fo.io/c2fo/spark/aws/emr/2016/07/06/apache-spark-config-cheatsheet/">Apache Spark Config</a>
+<br>
+<br>
+<br>
+<br>
+<br><img src="images/Apache_HBase_logo.png" class="inline"/>&ensp;&ensp;<b>Tuning Tips and Tricks</b>
+<br>
+<br><b>HBase Ports: (<a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_reference/content/hbase-ports.html">Reference</a>)</b>
+<br>&ensp;&ensp;&bull; HMaster: 16000
+<br>&ensp;&ensp;&bull; HMaster Info Web UI: 16010
+<br>&ensp;&ensp;&bull; Region Server (slave nodes): 16020/16320
+<br>&ensp;&ensp;&bull; HBase Thrift Server: 9090/9095
+<br>
+<br><b>General Recommendations:</b>
+<br>&ensp;&ensp;&bull; zookeeper.session.timeout = 1 minute (default: 3 minutes)
+<br>&ensp;&ensp;&bull; dfs.datanode.failed.volumes.tolerated = half the amount of your available disks
+<br>&ensp;&ensp;&bull; HBase currently does not do well with anything above two or three <a href="https://hbase.apache.org/book.html#number.of.cfs">column families</a>
+<br>&ensp;&ensp;&bull; Reduce Hotspotting:
+<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&bull; Salting (add random prefix to the rowkey, causes different sorting)
+<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&bull; Hashing 
+<br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&bull; Reversing the Key (reverse a fixed-width or numeric row key)
+<br>&ensp;&ensp;&bull; hbase.regionserver.handler.count = cores (for concurrency, threads kept open to answer incoming requests)
+<br>&ensp;&ensp;&bull; hbase.master.balancer.maxRitPercent = 0.25 (25% regions in transition when balancing, and cluster’s availability is at least 75% when balancing)
+<br>&ensp;&ensp;&bull; hbase.balancer.period = 30000 (Period, in ms, at which the region balancer runs in the Master)
+<br>
+<br><b>Spark References:</b>
+<br><a href="https://hbase.apache.org/book.html">HBase Reference Guide</a>
+<br>
