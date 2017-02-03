@@ -2,6 +2,11 @@
 
 <br><img src="images/Apache_Hive_logo.png" class="inline"/>&ensp;&ensp;<b>Tuning Tips and Tricks</b>
 <br>
+<br><b>Hive Ports: (<a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_reference/content/hive-ports.html">Reference</a>)</b>
+<br>&ensp;&ensp;&ensp;&ensp;Hive Server: 10000
+<br>&ensp;&ensp;&ensp;&ensp;Hive Web UI: 9999
+<br>&ensp;&ensp;&ensp;&ensp;Hive Metastore: 9083
+<br>
 <br><b>General Recommendations:</b>
 <br>&ensp;&ensp;&bull; Enable Tez
 <br>&ensp;&ensp;&bull; Store as ORC and use Zlib/Snappy compression
