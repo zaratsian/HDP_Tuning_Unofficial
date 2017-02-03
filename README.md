@@ -105,6 +105,9 @@
 <br>&ensp;&ensp;&bull; Reduces data size, so less data transfer
 <br>&ensp;&ensp;&bull; Use Kyro over Java (Kyro is up to 10x faster)
 <br>&ensp;&ensp;&bull; conf.set(“spark.serializer”, “org.apache.spark.serializer.KryoSerializer”)
+<br>&ensp;&ensp;&bull; sparkConf.set("spark.sql.tungsten.enabled", "true")
+<br>&ensp;&ensp;&bull; sparkConf.set("spark.io.compression.codec", "snappy")
+<br>&ensp;&ensp;&bull; sparkConf.set("spark.rdd.compress", "true")
 <br>
 <br><b>3. Memory and Garbage Collection Tuning:</b>
 <br>&ensp;&ensp;&bull; GC is a problem for Spark apps which churn RDDs
@@ -116,6 +119,7 @@ level to limit just one object per RDD
 <br><b>4. Set Correct Level of Parallelism:</b> 
 <br>&ensp;&ensp;&bull; set spark.default.parallelism = 2-3 tasks per CPU core in your cluster
 <br>&ensp;&ensp;&bull; Normally 3 - 6 executors per node is a reasonable, depends on the CPU cores and memory size per executor
+<br>&ensp;&ensp;&bull; sparkConf.set("spark.cores.max", "4")
 <br>&ensp;&ensp;&bull; 5 or less cores per executor (per node)  (ie. 24-core node could run 24/4cores = 6 executors)
 <br>&ensp;&ensp;&bull; set num-executors = (4 nodes * 6 executors = 24 executors - 1 = 23 total executors)
 <br>&ensp;&ensp;&bull; set executor-memory = 256GB-2GB RAM / 6 executors = 42GB - 2GB = 40GB
