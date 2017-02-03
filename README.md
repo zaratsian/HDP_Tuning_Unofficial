@@ -153,7 +153,11 @@ level to limit just one object per RDD
 <br>&ensp;&ensp;&bull; hbase.regionserver.handler.count = cores (for concurrency, threads kept open to answer incoming requests)
 <br>&ensp;&ensp;&bull; hbase.master.balancer.maxRitPercent = 0.25 (25% regions in transition when balancing, and cluster’s availability is at least 75% when balancing)
 <br>&ensp;&ensp;&bull; hbase.balancer.period = 30000 (Period, in ms, at which the region balancer runs in the Master)
+<br>&ensp;&ensp;&bull; Use 150-175 regions per RegionServer 
+<br>&ensp;&ensp;&bull; Use 10GB region size 
+<br>&ensp;&ensp;&bull; if Regionserver.Server.percentFilesLocal less than 70%, then time for compaction.
 <br>
 <br><b>Spark References:</b>
 <br><a href="https://hbase.apache.org/book.html">HBase Reference Guide</a>
+<br><a href="https://phoenix.apache.org/Phoenix-in-15-minutes-or-less.html">Apache Phoenix</a>
 <br>
