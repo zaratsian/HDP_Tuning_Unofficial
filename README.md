@@ -7,6 +7,7 @@
 <br>&ensp;&ensp;&bull; Hive Web UI: 9999
 <br>&ensp;&ensp;&bull; Hive Metastore: 9083
 <br>
+<br>
 <br><b>General Recommendations:</b>
 <br>&ensp;&ensp;&bull; Enable Tez (set hive.execution.engine=tez;)
 <br>&ensp;&ensp;&bull; Store as ORC and use Zlib or Snappy compression
@@ -20,15 +21,8 @@
 <br>&ensp;&ensp;&bull; Partition (evenly) on moderate cardinality variable (500, 1000 partitions? 10000?, 20000?)
 <br>&ensp;&ensp;&bull; Bucketing provides "sub-partitions" of a partition (or further sampling/decomposition of datasets
 <br>
-<br>CREATE TABLE mytable ( 
-<br>&ensp;&ensp;&ensp;&ensp;name string,
-<br>&ensp;&ensp;&ensp;&ensp;city string,
-<br>&ensp;&ensp;&ensp;&ensp;employee_id int ) 
-<br>PARTITIONED BY (year STRING, month STRING, day STRING) 
-<br>CLUSTERED BY (employee_id) INTO 256 BUCKETS;
 <br>
 <br><b>Configuration Suggestions:</b>
-<br>
 <br>set hive.cbo.enable=true;
 <br>set hive.compute.query.using.stats=true;
 <br>set hive.exec.dynamic.partition.mode=nonstrict;
@@ -72,10 +66,20 @@
 <br>set yarn.scheduler.maximum-allocation-mb = yarn.nodemanager.resource.memory-mb
 <br>set yarn.scheduler.minimum-allocation-mb = Memory per processor (or less)
 <br>
-<br><b>Hive Syntax: (<a href="http://hortonworks.com/wp-content/uploads/2016/05/Hortonworks.CheatSheet.SQLtoHive.pdf">Cheatsheet</a>)</b>
-<br>```CREATE TABLE A_ORC (ID int, name string, value float) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
 <br>
-<br>```INSERT INTO TABLE A_ORC SELECT * FROM A;```
+<br><b>Hive Syntax: (<a href="http://hortonworks.com/wp-content/uploads/2016/05/Hortonworks.CheatSheet.SQLtoHive.pdf">Cheatsheet</a>)</b>
+<br>
+<br>```CREATE TABLE myTableA (ID int, name string, value float) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
+<br>
+<br>```INSERT INTO TABLE myTableA SELECT * FROM A;```
+<br>
+```CREATE TABLE mytable ( 
+    name string, 
+    city string, 
+    employee_id int ) 
+PARTITIONED BY (year STRING, month STRING, day STRING) 
+CLUSTERED BY (employee_id) INTO 256 BUCKETS; 
+```
 <br>
 <br>Create table and column stats:
 <br>```ANALYZE TABLE myORCtable partition (col1, col2, col3) COMPUTE STATISTICS;```
