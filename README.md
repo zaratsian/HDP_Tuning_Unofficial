@@ -73,6 +73,16 @@
 <br>
 <br>```INSERT INTO TABLE myTableA SELECT * FROM A;```
 <br>
+<br>
+<code>
+CREATE TABLE mytable ( 
+    name string, 
+    city string, 
+    employee_id int ) 
+PARTITIONED BY (year STRING, month STRING, day STRING) 
+CLUSTERED BY (employee_id) INTO 256 BUCKETS; 
+</code>
+<br>
 <br>Create table and column stats:
 <br>```ANALYZE TABLE myORCtable partition (col1, col2, col3) COMPUTE STATISTICS;```
 <br>```ANALYZE TABLE myORCtable partition (col1, col2, col3) COMPUTE STATISTICS for columns;```
