@@ -9,7 +9,7 @@
 <br>
 <br>
 <br><b>General Recommendations:</b>
-<br>&ensp;&ensp;&bull; Enable Tez (set hive.execution.engine=tez;)
+<br>&ensp;&ensp;&bull; Enable Tez (hive.execution.engine=tez)
 <br>&ensp;&ensp;&bull; Store as ORC and use Zlib or Snappy compression
 <br>&ensp;&ensp;&bull; Use Vectorization (hive.vectorized.execution.enabled, hive.vectorized.execution.reduce.enabled)
 <br>&ensp;&ensp;&bull; Use CBO (hive.cbo.enable, hive.compute.query.using.stats)
@@ -69,15 +69,24 @@
 <br>
 <br><b>Hive Syntax: (<a href="http://hortonworks.com/wp-content/uploads/2016/05/Hortonworks.CheatSheet.SQLtoHive.pdf">Cheatsheet</a>)</b>
 <br>
-<br>```CREATE TABLE myTable (ID int, name string, value float) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
+<br>```CREATE TABLE myTable (employee_id int, item string, price float) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
 <br>
-<br>```INSERT INTO TABLE myTable SELECT * FROM anotherTable;```
+<br>```INSERT INTO TABLE myTable SELECT * FROM staging_table;```
 <br>
-<br>```CREATE TABLE mytable (name string, city string, employee_id int) PARTITIONED BY (year STRING, month STRING, day STRING) CLUSTERED BY (employee_id) INTO 256 BUCKETS;```
+<br>When partitioning you will use 1 or more “virtual” columns (xdate and state are virtual):
+<br>```CREATE TABLE mytable (employee_id int, item string, price float) PARTITIONED BY (xdate STRING, state STRING) CLUSTERED BY (employee_id) INTO 256 BUCKETS;```
+<br>
+<br>When loading data into partitioned table, at least one virtual column must be specified.
+<br>```INSERT INTO mytable (xdate='2017-02-11', state='NC') SELECT * FROM staging_table where xdate='2017-02-11' AND state = 'NC';```
+<br>
+<br>All partitions can be loaded at once (as dynamic partitions):
+<br>SET hive.exec.dynamic.partition.mode=nonstrict; 
+<br>SET hive.exec.dynamic.partition=true;
+<br>```INSERT INTO sale (xdate, state) SELECT * FROM staging_table;```
 <br>
 <br>Create table and column stats:
-<br>```ANALYZE TABLE myORCtable partition (col1, col2, col3) COMPUTE STATISTICS;```
-<br>```ANALYZE TABLE myORCtable partition (col1, col2, col3) COMPUTE STATISTICS for columns;```
+<br>```ANALYZE TABLE myTable partition (col1, col2, col3) COMPUTE STATISTICS;```
+<br>```ANALYZE TABLE myTable partition (col1, col2, col3) COMPUTE STATISTICS for columns;```
 <br>
 <br><img src="images/hive_tez_tuning_1.jpg" class="inline"/>
 <br>
