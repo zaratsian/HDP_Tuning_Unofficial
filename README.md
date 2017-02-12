@@ -11,8 +11,8 @@
 <br><b>General Recommendations:</b>
 <br>&ensp;&ensp;&bull; Enable Tez (set hive.execution.engine=tez;)
 <br>&ensp;&ensp;&bull; Store as ORC and use Zlib or Snappy compression
-<br>&ensp;&ensp;&bull; Use Vectorization
-<br>&ensp;&ensp;&bull; Use CBO (Cost-Based Optimizer) with Column Stats (CBO requires stats)
+<br>&ensp;&ensp;&bull; Use Vectorization (hive.vectorized.execution.enabled, hive.vectorized.execution.reduce.enabled)
+<br>&ensp;&ensp;&bull; Use CBO (hive.cbo.enable, hive.compute.query.using.stats)
 <br>&ensp;&ensp;&bull; Check SQL syntax
 <br>&ensp;&ensp;&bull; Use Tez View (within Ambari) for troublshooting 
 <br>&ensp;&ensp;&bull; Look at number of reduces & mappers (how many are running in parallel, what are the runtimes)
@@ -69,19 +69,11 @@
 <br>
 <br><b>Hive Syntax: (<a href="http://hortonworks.com/wp-content/uploads/2016/05/Hortonworks.CheatSheet.SQLtoHive.pdf">Cheatsheet</a>)</b>
 <br>
-<br>```CREATE TABLE myTableA (ID int, name string, value float) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
+<br>```CREATE TABLE myTable (ID int, name string, value float) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
 <br>
-<br>```INSERT INTO TABLE myTableA SELECT * FROM A;```
+<br>```INSERT INTO TABLE myTable SELECT * FROM anotherTable;```
 <br>
-<br>
-<code>
-CREATE TABLE mytable ( 
-    name string, 
-    city string, 
-    employee_id int ) 
-PARTITIONED BY (year STRING, month STRING, day STRING) 
-CLUSTERED BY (employee_id) INTO 256 BUCKETS; 
-</code>
+<br>```CREATE TABLE mytable (name string, city string, employee_id int) PARTITIONED BY (year STRING, month STRING, day STRING) CLUSTERED BY (employee_id) INTO 256 BUCKETS;```
 <br>
 <br>Create table and column stats:
 <br>```ANALYZE TABLE myORCtable partition (col1, col2, col3) COMPUTE STATISTICS;```
