@@ -10,9 +10,9 @@
 <br>
 <br><b>General Recommendations:</b>
 <br>&ensp;&ensp;&bull; Enable Tez (hive.execution.engine=tez)
-<br>&ensp;&ensp;&bull; Store as ORC and use Zlib or Snappy compression
 <br>&ensp;&ensp;&bull; Use Vectorization (hive.vectorized.execution.enabled, hive.vectorized.execution.reduce.enabled)
 <br>&ensp;&ensp;&bull; Use CBO (hive.cbo.enable, hive.compute.query.using.stats)
+<br>&ensp;&ensp;&bull; Store as ORC and use Zlib or Snappy compression
 <br>&ensp;&ensp;&bull; Check SQL syntax
 <br>&ensp;&ensp;&bull; Use Tez View (within Ambari) for troublshooting 
 <br>&ensp;&ensp;&bull; Look at number of reduces & mappers (how many are running in parallel, what are the runtimes)
@@ -25,6 +25,8 @@
 <br><b>Configuration Suggestions:</b>
 <br>set hive.cbo.enable=true;
 <br>set hive.compute.query.using.stats=true;
+<br>set hive.enforce.bucketing = true;
+<br>set hive.enforce.sorting=true;
 <br>set hive.exec.dynamic.partition.mode=nonstrict;
 <br>set hive.exec.dynamic.partition=true;
 <br>set hive.exec.max.created.files=1000000;
@@ -77,7 +79,7 @@
 <br>```CREATE TABLE mytable (employee_id int, item string, price float) PARTITIONED BY (xdate STRING, state STRING) CLUSTERED BY (employee_id) INTO 256 BUCKETS;```
 <br>
 <br>When loading data into partitioned table, at least one virtual column must be specified.
-<br>```INSERT INTO mytable (xdate='2017-02-11', state='NC') SELECT * FROM staging_table where xdate='2017-02-11' AND state = 'NC';```
+<br>```INSERT INTO mytable (xdate='2017-02-11', state='NC') AS SELECT * FROM staging_table where xdate='2017-02-11' AND state = 'NC';```
 <br>
 <br>All partitions can be loaded at once (as dynamic partitions):
 <br>SET hive.exec.dynamic.partition.mode=nonstrict; 
@@ -88,7 +90,12 @@
 <br>```ANALYZE TABLE myTable partition (col1, col2, col3) COMPUTE STATISTICS;```
 <br>```ANALYZE TABLE myTable partition (col1, col2, col3) COMPUTE STATISTICS for columns;```
 <br>
+<br>
+<br><b>Diagram - Hive/Tez Tuning:</b>
 <br><img src="images/hive_tez_tuning_1.jpg" class="inline"/>
+<br>
+<br><b>Diagram - Hive Partitioning and Bucketing</b>
+<br><img src="images/hive_partitioning_bucketing.jpg" class="inline"/>
 <br>
 <br><b>Hive References:</b>
 <br><a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_hive-performance-tuning/content/ch_hive_architectural_overview.html">Hortonworks - Apache Hive Tuning for High Performance</a>
