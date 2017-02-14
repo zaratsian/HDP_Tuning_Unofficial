@@ -86,7 +86,9 @@
 <br>SET hive.exec.dynamic.partition=true;
 <br>```INSERT INTO sale (xdate, state) SELECT * FROM staging_table;```
 <br>
-<br>Create table and column stats:
+<br>Create table and column-level stats (Required for CBO):
+<br>```ANALYZE TABLE myTable COMPUTE STATISTICS;```
+<br>```ANALYZE TABLE myTable COMPUTE STATISTICS for columns;```
 <br>```ANALYZE TABLE myTable partition (col1, col2, col3) COMPUTE STATISTICS;```
 <br>```ANALYZE TABLE myTable partition (col1, col2, col3) COMPUTE STATISTICS for columns;```
 <br>
