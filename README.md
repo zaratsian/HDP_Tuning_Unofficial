@@ -71,6 +71,8 @@
 <br>
 <br><b>Hive Syntax: (<a href="http://hortonworks.com/wp-content/uploads/2016/05/Hortonworks.CheatSheet.SQLtoHive.pdf">Cheatsheet</a>)</b>
 <br>
+<br>```CREATE TABLE a_orc STORED AS ORC AS SELECT * FROM A;```
+<br>
 <br>```CREATE TABLE myTable (employee_id int, item string, price float) STORED AS ORC tblproperties (“orc.compress" = “SNAPPY”);```
 <br>
 <br>```INSERT INTO TABLE myTable SELECT * FROM staging_table;```
