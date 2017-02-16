@@ -179,7 +179,8 @@ level to limit just one object per RDD
 <br>&ensp;&ensp;&bull; Use 10GB region size 
 <br>&ensp;&ensp;&bull; if Regionserver.Server.percentFilesLocal less than 70%, then time for compaction.
 <br>
-<br><b>Spark References:</b>
+<br><b>HBase and Phoenix References:</b>
 <br><a href="https://hbase.apache.org/book.html">HBase Reference Guide</a>
-<br><a href="https://phoenix.apache.org/Phoenix-in-15-minutes-or-less.html">Apache Phoenix</a>
+<br><a href="https://phoenix.apache.org/">Apache Phoenix</a>
+<br>
 <br>
