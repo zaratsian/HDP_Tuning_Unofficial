@@ -39,6 +39,14 @@ analyze table yourTableName compute statistics for columns;
 #ANALYZE TABLE yourTableName partition (yourCol1, yourCol2, yourCol3) COMPUTE STATISTICS; 
 #ANALYZE TABLE yourTableName partition (yourCol1, yourCol2, yourCol3) COMPUTE STATISTICS for columns; 
 
+# Additional Hive Tuning Parameters:
+set mapred.reduce.tasks=-1;                 # Automatically set reducer count, with a max of hive.exec.reducers.max
+set hive.tez.auto.reducer.parallelism=true; # Hive will estimate data sizes and set parallelism estimates by sampling source vertices
+set hive.exec.parallel=true; 
+#set mapred.compress.map.output=true;
+#set mapred.output.compress=true;
+#set hive.exec.compress.output=true;
+
 # Run your optimized query plan (To get new runtime - compare against baseline):
 select count(*) from yourTableName;
 
