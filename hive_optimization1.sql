@@ -39,4 +39,10 @@ analyze table yourTableName compute statistics for columns;
 #ANALYZE TABLE yourTableName partition (yourCol1, yourCol2, yourCol3) COMPUTE STATISTICS; 
 #ANALYZE TABLE yourTableName partition (yourCol1, yourCol2, yourCol3) COMPUTE STATISTICS for columns; 
 
+# Run your optimized query plan (To get new runtime - compare against baseline):
+select count(*) from yourTableName;
+
+# Output Explain plan:
+explain select count(*) from yourTableName;
+
 #ZEND
