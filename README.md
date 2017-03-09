@@ -29,7 +29,7 @@
 <br>set hive.enforce.sorting=true;
 <br>set hive.exec.dynamic.partition.mode=nonstrict;
 <br>set hive.exec.dynamic.partition=true;
-<br><p style="color:#151B54";>set hive.exec.max.created.files=1000000;</p>  --default=100000
+<br><font color="darkblue">set hive.exec.max.created.files=1000000;</font>  --default=100000
 <br>set hive.exec.max.dynamic.partitions.pernode=100000;
 <br>set hive.exec.max.dynamic.partitions=100000;
 <br>set hive.exec.parallel.thread.number=16;
