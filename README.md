@@ -25,11 +25,11 @@
 <br><b>Configuration Suggestions:</b>
 <br>set hive.cbo.enable=true;
 <br>set hive.compute.query.using.stats=true;
-<br>set hive.enforce.bucketing = true;
+<br>set hive.enforce.bucketing=true;
 <br>set hive.enforce.sorting=true;
 <br>set hive.exec.dynamic.partition.mode=nonstrict;
 <br>set hive.exec.dynamic.partition=true;
-<br>set hive.exec.max.created.files=1000000;
+<br><font color="#151B54">set hive.exec.max.created.files=1000000;</font>  --default = 100000
 <br>set hive.exec.max.dynamic.partitions.pernode=100000;
 <br>set hive.exec.max.dynamic.partitions=100000;
 <br>set hive.exec.parallel.thread.number=16;
