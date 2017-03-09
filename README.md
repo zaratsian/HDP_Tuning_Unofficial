@@ -47,8 +47,8 @@
 <br>set hive.tez.exec.print.summary=true;
 <br>--set hive.tez.java.opts=-XX:+PrintGCDetails -verbose:gc -XX:+PrintGCTimeStamps -XX:+UseNUMA -XX:+UseG1GC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/;
 <br>set hive.tez.max.partition.factor=2.0;
-<br>set hive.tez.min.partition.factor=0.25; 
-<br>set hive.vectorized.execution.enabled=true;  
+<br>set hive.tez.min.partition.factor=0.25;
+<br>set hive.vectorized.execution.enabled=true;
 <br>set hive.vectorized.execution.reduce.enabled=true;   <b>--default=could be true or false</b>
 <br>set mapred.job.reduce.input.buffer.percent=0.0;
 <br>--set mapred.map.tasks=6;
