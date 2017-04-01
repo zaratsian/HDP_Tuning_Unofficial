@@ -8,7 +8,7 @@
 ########################################################################################
 
 # Get info on your table:
-desc yourTableName;
+describe formatted yourTableName;
 
 # Get create table info for your table:
 show create table yourTableName;
