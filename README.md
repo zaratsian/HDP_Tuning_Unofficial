@@ -67,6 +67,10 @@
 <br>set yarn.scheduler.minimum-allocation-mb = Memory per processor (or less)
 <br>
 <br>
+<br>Run the <a href="https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_command-line-installation/content/download-companion-files.html">YARN Utility Script</a> to help determine configuration settings.
+<br>```python hdp-configuration-utils.py -c 16 -m 64 -d 4 -k True```
+<br>
+<br>
 <br><b>Hive Syntax: (<a href="http://hortonworks.com/wp-content/uploads/2016/05/Hortonworks.CheatSheet.SQLtoHive.pdf">Cheatsheet</a>)</b>
 <br>
 <br>```DESCRIBE FORMATTED mytable;```
