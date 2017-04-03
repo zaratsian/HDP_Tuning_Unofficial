@@ -68,6 +68,9 @@
 <br>
 <br>
 <br>Run the <a href="https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_command-line-installation/content/download-companion-files.html">YARN Utility Script</a> to help determine configuration settings.
+<br>```wget http://public-repo-1.hortonworks.com/HDP/tools/2.5.3.0/hdp_manual_install_rpm_helper_files-2.5.3.0.37.tar.gz
+tar zxvf hdp_manual_install_rpm_helper_files-2.5.3.0.37.tar.gz```
+<br>
 <br>```python hdp-configuration-utils.py -c 16 -m 64 -d 4 -k True```
 <br>
 <br>
