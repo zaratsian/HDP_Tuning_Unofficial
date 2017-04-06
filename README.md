@@ -11,15 +11,18 @@
 <br><b>General Recommendations:</b>
 <br>&ensp;&ensp;&bull; Enable Tez (hive.execution.engine=tez)
 <br>&ensp;&ensp;&bull; Use Vectorization (hive.vectorized.execution.enabled, hive.vectorized.execution.reduce.enabled)
-<br>&ensp;&ensp;&bull; Use CBO (hive.cbo.enable, hive.compute.query.using.stats)
-<br>&ensp;&ensp;&bull; Store as ORC and use Zlib or Snappy compression
+<br>&ensp;&ensp;&bull; Use CBO (hive.cbo.enable, hive.compute.query.using.stats, compute table and column stats)
+<br>&ensp;&ensp;&bull; Store as ORC (Use Zlib or Snappy compression)
 <br>&ensp;&ensp;&bull; Check SQL syntax
 <br>&ensp;&ensp;&bull; Use Tez View (within Ambari) for troublshooting 
 <br>&ensp;&ensp;&bull; Look at number of reduces & mappers (how many are running in parallel, what are the runtimes)
-<br>&ensp;&ensp;&bull; Check the HDFS Hive file sizes (~1GB each) 
-<br>&ensp;&ensp;&bull; vCores (80 - 90%)
-<br>&ensp;&ensp;&bull; Partition (evenly) on moderate cardinality variable (500, 1000 partitions? 10000?, 20000?)
-<br>&ensp;&ensp;&bull; Bucketing provides "sub-partitions" of a partition (or further sampling/decomposition of datasets
+<br>&ensp;&ensp;&bull; Check the HDFS Hive file sizes (~1GB each). 100/200 MB is small.
+<br>&ensp;&ensp;&bull; vCores (~3 CPUs less than total CPUs... Or 80% of VCPUs if overclocked)
+<br>&ensp;&ensp;&bull; 2GB Tez container size is a good starting point (hive.tez.container.size=2250)
+<br>&ensp;&ensp;&bull; 1GB Yarn container size is a good starting point (yarn.nodemanager.resource.memory-mb=1028)
+<br>&ensp;&ensp;&bull; Consider using INSTR() instead of IN
+<br>&ensp;&ensp;&bull; Partition (evenly) on moderate cardinality variable (500, 1000 partitions). Useful for where queries.
+<br>&ensp;&ensp;&bull; Bucketing (cluster by, sorted by XX buckets - this can be applied to granular data) Useful for joins.
 <br>
 <br>
 <br><b>Configuration Suggestions:</b>
