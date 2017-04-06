@@ -1,8 +1,8 @@
 <h3>Unofficial Guide for Tuning HDP Services</h3>
-This repo contains settings, links, recommendations, and tips that I have collected by working with many customers on a variety of Hadoop clusters. I will continually update this as I learn more and figure out what works (and what doesn't work). Feel free to use this guide as you optimize your cluster and associated services. 
+This repo contains settings, links, recommendations, and tips that I have collected by working with many customers on a variety of Hadoop clusters. I will continually update this as I learn more and figure out what works (and what doesn't work). Feel free to use this guide as you optimize your cluster and the associated services. 
 <br>
 <br>
-This repo includes recommendations for Apache Hive, Apache Spark, Apache HBase
+Includes: Apache Hive, Apache Spark, Apache HBase
 <br>
 <br>
 
