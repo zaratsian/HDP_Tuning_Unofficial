@@ -47,6 +47,8 @@
 <br>set hive.stats.fetch.partition.stats=true;
 <br>set hive.tez.auto.reducer.parallelism=true;
 <br>set hive.server2.tez.initialize.default.sessions=true;   <b>--default=true/false</b>
+<br>set hive.prewarm.enabled=true;  <b>--default=false, Use prewarm carefully.. it could add runtime</b>
+<br>set hive.prewarm.numcontainers=3;  <b>--default=3, Use prewarm carefully.. it could add runtime</b>
 <br>set hive.tez.container.size = same as or a small multiple (1 or 2 times that) of YARN container size yarn.scheduler.minimum-allocation-mb but NEVER more than yarn.scheduler.maximum-allocation-mb
 <br>set hive.tez.exec.print.summary=true;
 <br>--set hive.tez.java.opts=-XX:+PrintGCDetails -verbose:gc -XX:+PrintGCTimeStamps -XX:+UseNUMA -XX:+UseG1GC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/;
