@@ -65,7 +65,7 @@
 <br>set tez.shuffle-vertex-manager.min-src-fraction=0.25;  <b>--default=0.2</b>
 <br>set tez.shuffle-vertex-manager.max-src-fraction=0.75;      <b>--default=0.4</b>
 <br>--set tez.queue.name=default;
-<br>--beeline !connect jdbc:hive2://your.host:your.port/data_base?tez.queue.name=<queue-name>
+<br>--beeline -n hive -p hive -u "jdbc:hive2://localhost:10000?tez.queue.name=ztest"
 <br>set yarn.nodemanager.resource.memory-mb = Usually between 75% - 87.5% RAM
 <br>set yarn.scheduler.maximum-allocation-mb = yarn.nodemanager.resource.memory-mb
 <br>set yarn.scheduler.minimum-allocation-mb = Memory per processor (or less)
