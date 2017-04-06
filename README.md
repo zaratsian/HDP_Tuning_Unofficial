@@ -63,6 +63,9 @@
 <br>set mapreduce.input.fileinputformat.split.maxsize=1000000000;         -- 1 GB
 <br>set mapreduce.input.fileinputformat.split.minsize.per.node=240000000; -- 240 MB
 <br>set mapreduce.input.fileinputformat.split.minsize.per.rack=240000000; -- 240 MB
+<br>set tez.am.container.reuse.enabled=true;
+<br>set tez.am.container.idle.release-timeout-min.millis=30000; <b>default=10000 </b>
+<br>set tez.am.container.idle.release-timeout-max.millis=90000; <b>default=20000 </b>
 <br>set tez.grouping.max-size=1073741824; -- 1GB
 <br>set tez.grouping.min-size=16777216;   -- 16 MB
 <br>set tez.shuffle-vertex-manager.min-src-fraction=0.25;  <b>--default=0.2</b>
