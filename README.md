@@ -125,6 +125,7 @@ tar zxvf hdp_manual_install_rpm_helper_files-2.5.3.0.37.tar.gz```
 <br><a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_hive-performance-tuning/content/section_create_configure_yarn_capacity_scheduler_queues.html">Capacity Scheduler Queues - Allocate cluster resources among users and groups</a>
 <br><a href="http://hortonworks.com/blog/5-ways-make-hive-queries-run-faster/">5 Ways to Improve Hive Performance</a>
 <br><a href="https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.0/bk_command-line-installation/content/download-companion-files.html">Hortonworks Companion Scripts (yarn-utils.py)</a>
+<br><a href="https://community.hortonworks.com/articles/56636/hive-understanding-concurrent-sessions-queue-alloc.html">Apache Hive Concurrent Sessions</a>
 <br>
 <br>
 <br>
