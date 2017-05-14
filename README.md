@@ -139,6 +139,10 @@ tar zxvf hdp_manual_install_rpm_helper_files-2.5.3.0.37.tar.gz```
 <br>
 <br><img src="images/Apache_Spark_logo.png" class="inline"/>Tuning Tips and Tricks</h3>
 <br>
+<br><b>Tuning Recommendations: (<a href="http://spark.apache.org/docs/latest/configuration.html">Full Parameter List</a>)</b>
+<br>
+<br><b>Additional Recommendations:</b>
+<br>
 <br><b>1. Caching:</b> 
 <br>&ensp;&ensp;&bull; MEMORY_ONLY: (default/recommended) Store RDD as deserialized objects in JVM Heap
 <br>&ensp;&ensp;&bull; MEMORY_ONLY_SER: (2nd option) Store RDD as serialized Kryo objects. Trade CPU time for memory savings
