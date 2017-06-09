@@ -53,7 +53,11 @@ print '\n\n####################################################################\
     '\n--executor-cores:   ' + str(executor_cores) + \
     '\n--executor-memory:  ' + str(executor_memory) + ' GB' \
     '\n--num-executors:    ' + str(num_executors) + \
+    '\n\n' + \
+    './bin/spark-submit --master yarn --deploy-mode cluster' + ' --driver-cores ' + str(driver_cores) + ' --driver-memory ' + str(driver_memory) + 'G' + ' --executor-memory ' + str(executor_memory) + 'G' + ' --num-executors ' + str(num_executors) + ' --executor-cores ' + str(executor_cores) + \
     '\n\n####################################################################' 
+
+
 
 
 #ZEND
