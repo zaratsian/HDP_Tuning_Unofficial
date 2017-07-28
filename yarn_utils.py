@@ -16,6 +16,18 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 '''
+###########################################################################################
+#
+#   Usage:  python hdp-configuration-utils.py -c 16 -m 64 -d 4 -k True
+#
+#   -c CORES    The number of cores on each host.
+#   -m MEMORY   The amount of memory on each host in GB.
+#   -d DISKS    The number of disks on each host.
+#   -k HBASE    "True" if HBase is installed, "False" if not.
+#
+#   https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.3.4/bk_installing_manually_book/content/determine-hdp-memory-config.html
+#
+###########################################################################################
 
 import optparse
 from pprint import pprint
