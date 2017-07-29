@@ -7,7 +7,7 @@
 #   This tool will extract cluster information from your cluster (via Ambari APIs), then the 
 #   code will use these extracted parameters in order to calculate the optimal Spark configuration.
 #
-#   Usage: hive_tuning_tool_ambari.py --ambari_hostname=dzaratsian_hdp.com --ambari_port=8080 --cluster_name=dz_hdp --username=admin --password=admin
+#   Usage: hive_performance_check.py --ambari_hostname=dzaratsian_hdp.com --ambari_port=8080 --cluster_name=dz_hdp --username=admin --password=admin
 #
 #   Tested on HDP 2.6.0 (Ambari 2.5.1.0 , HDFS 2.7.3, YARN 2.7.3, Hive 1.2.1000)
 #   CentOS Linux release 7.3.1611 (Core) with Python 2.7.5
