@@ -40,7 +40,7 @@ try:
     password            = [opt[1] for opt in opts if opt[0]=='--password'][0]
     expected_concurrent_queries = 5
 except:
-    print '\n\n[ USAGE ] hive_tuning_tool_ambari.py --ambari_hostname=<hostname> --ambari_port=<port> --cluster_name=<cluster_name> --username=<string> --password=<string>\n\n'
+    print '\n\n[ USAGE ] hive_performance_check.py --ambari_hostname=<hostname> --ambari_port=<port> --cluster_name=<cluster_name> --username=<string> --password=<string>\n\n'
     sys.exit(1)
 
 
